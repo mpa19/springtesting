@@ -24,7 +24,7 @@ pipeline {
                     junit 'build/test-results/**/*.xml'
                     archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true, followSymlinks: false
                     jacoco()
-                    recordIssues(tools: [java()])
+                    recordIssues(tools: [pmdParser(pattern: '**/test.xml')])
                 }
             }
         }
