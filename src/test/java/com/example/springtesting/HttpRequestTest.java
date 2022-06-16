@@ -35,6 +35,12 @@ class HttpRequestTest {
     }
 
     @Test
+    public void catADDCon0() {
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/add?a=0&b=2",
+                String.class)).isEqualTo("0.0");
+    }
+
+    @Test
     public void catADDWithIncorrectNumber() {
 
         assertThat(this.restTemplate.getForEntity("http://localhost:" + port + "/add?a=1&b=x",
