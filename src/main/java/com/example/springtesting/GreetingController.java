@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class GreetingController {
 
-    private static GreetingService service;
+    private final GreetingService service;
 
     public GreetingController(GreetingService service) {
-        GreetingController.service = service;
+        this.service = service;
     }
 
     @RequestMapping(path="/")
