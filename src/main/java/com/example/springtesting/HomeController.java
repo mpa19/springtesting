@@ -43,5 +43,13 @@ public class HomeController {
         return a-b;
     }
 
+    @GetMapping("/mod")
+    public Object mod(
+            @RequestParam(value="a", defaultValue = "0") Float a,
+            @RequestParam(value="b", defaultValue = "0") Float b)
+    {
+        return a%b;
+    }
+
 
 }
