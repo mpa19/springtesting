@@ -13,7 +13,7 @@ pipeline {
 
                 // Run Gradle a Unix agent.
                 withGradle {
-                    sh './gradlew test assemble'
+                    sh './gradlew test assemble check'
                 }
             }
 
