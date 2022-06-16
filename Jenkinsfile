@@ -6,25 +6,28 @@ pipeline {
     }
 
     stages {
+        stage('Test') {
+            steps {
+                sh './gradlew clean test check'
+            }
+            post {
+                always {
+                    junit 'build/test-results/**/*.xml'
+                    jacoco execPattern: 'build/jacoco/*.exec'
+                    recordIssues(tools: [pmdParser(pattern: 'build/reports/pmd/*.xml')])
+                }
+            }
+        }
         stage('Build') {
             steps {
-                // Get some code from a GitHub repository
-                // git branch: 'main', url: 'https://github.com/mpa19/hello-springrest.git'
-
-                // Run Gradle a Unix agent.
                 withGradle {
-                    sh './gradlew test assemble check'
+                    sh './gradlew assemble'
                 }
             }
 
             post {
-                // If Gradle was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
                 success {
-                    junit 'build/test-results/**/*.xml'
                     archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true, followSymlinks: false
-                    jacoco()
-                    recordIssues(tools: [pmdParser(pattern: '**/test.xml')])
                 }
             }
         }
