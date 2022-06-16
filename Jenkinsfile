@@ -23,6 +23,7 @@ pipeline {
                 success {
                     junit 'build/test-results/**/*.xml'
                     archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true, followSymlinks: false
+                    jacoco()
                 }
             }
         }
