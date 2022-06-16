@@ -18,4 +18,30 @@ public class HomeController {
     {
         return a+b;
     }
+
+    @GetMapping("/div")
+    public Object div(
+            @RequestParam(value="a", defaultValue = "0") Float a,
+            @RequestParam(value="b", defaultValue = "0") Float b)
+    {
+        return a/b;
+    }
+
+    @GetMapping("/mult")
+    public Object mult(
+            @RequestParam(value="a", defaultValue = "0") Float a,
+            @RequestParam(value="b", defaultValue = "0") Float b)
+    {
+        return a*b;
+    }
+
+    @GetMapping("/sub")
+    public Object sub(
+            @RequestParam(value="a", defaultValue = "0") Float a,
+            @RequestParam(value="b", defaultValue = "0") Float b)
+    {
+        return a-b;
+    }
+
+
 }
